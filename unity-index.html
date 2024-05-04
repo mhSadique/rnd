@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Unity WebGL Player | tMapEditor</title>
+  <link rel="stylesheet" href="TemplateData/style.css" />
+  <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+  <script type="text/javascript" src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+  <script type="text/javascript" src="TemplateData/CSSPlugin.js"></script>
+  <script src="TemplateData/UnityProgress.js"></script>
+</head>
+
+<body class="template" style="padding-top: 1.6vw; text-align: center;">
+  <div class="template-wrap clear">
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="625px"
+      width="1276px"></canvas>
+  </div>
+  <div id="loadingBox">
+    <div id="bgBar"></div>
+    <div id="progressBar"></div>
+    <img id="spinner" src="TemplateData/spinner.gif" style="display: none; margin: 0 auto" />
+    <p id="loadingInfo">Loading...</p>
+  </div>
+  <script type="text/javascript">
+
+    // fetch('https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.datagz')
+    //   .then(data => data.arrayBuffer())
+    //   .then(res => {
+    //     console.log('resss', res)
+    //   })
+    //   .catch(error => {
+    //     console.log('errorrr', error)
+    //   })
+
+    function getData() {
+      const request = new XMLHttpRequest();
+      const resourceURL = 'https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.datagz';
+      request.open("GET", resourceURL, false); // `false` makes the request synchronous
+      request.send(null);
+
+      if (request.status === 200) {
+        console.log('xhr getData', request);
+        return request.response
+      }
+
+    }
+
+    function getCode() {
+      const request = new XMLHttpRequest();
+      const resourceURL = 'https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.jsgz';
+      request.open("GET", resourceURL, false); // `false` makes the request synchronous
+      request.send(null);
+
+      if (request.status === 200) {
+        console.log('xhr getCode', request);
+        return request.response
+      }
+
+    }
+    function getAsm() {
+      const request = new XMLHttpRequest();
+      const resourceURL = 'https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.asm.jsgz';
+      request.open("GET", resourceURL, false); // `false` makes the request synchronous
+      request.send(null);
+
+      if (request.status === 200) {
+        console.log('xhr getCode', request);
+        return request.response
+      }
+
+    }
+    function getMem() {
+      const request = new XMLHttpRequest();
+      const resourceURL = 'https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.memgz';
+      request.open("GET", resourceURL, false); // `false` makes the request synchronous
+      request.send(null);
+
+      if (request.status === 200) {
+        console.log('xhr getCode', request);
+        return request.response
+      }
+
+    }
+
+
+    var Module = {
+      TOTAL_MEMORY: 1073741824,
+      errorhandler: null, // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+      compatibilitycheck: null,
+      backgroundColor: '#222C36',
+      splashStyle: 'Light',
+      // dataUrl: 'Release/SwingBuild.data',
+      dataUrl: getData(),
+      // codeUrl: 'Release/SwingBuild.js',
+      codeUrl: getCode(),
+      asmUrl: 'Release/SwingBuild.asm.js',
+      // asmUrl: getAsm(),
+      memUrl: 'Release/SwingBuild.mem'
+      // memUrl: getMem()
+      // dataUrl: 'https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.datagz',
+      // codeUrl: 'https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.jsgz',
+      // asmUrl: 'https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.asm.jsgz',
+      // memUrl: 'https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.memgz'
+    }
+  </script>
+  <script src="Release/UnityLoader.js"></script>
+</body>
+
+<!-- https://github.com/mhSadique/rnd/raw/main/SwingBuild.asm.jsgz -->
+
+<!-- https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.asm.jsgz
+https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.datagz
+https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.jsgz
+https://raw.githubusercontent.com/mhSadique/rnd/main/SwingBuild.memgz -->
